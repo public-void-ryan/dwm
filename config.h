@@ -110,7 +110,7 @@ static const Layout layouts[] = {
 	/* { MOD, XK_z,     ACTION##stack, {.i = 2 } }, \ */
 	/* { MOD, XK_x,     ACTION##stack, {.i = -1 } }, */
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
+/* helper for spawning shell commands in pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
