@@ -45,7 +45,6 @@ static Sp scratchpads[] = {
 };
 
 /* tagging */
-/* \uf120 = terminal, \uf269 = firefox, \uf15c = obsidian, \uf0e0 = email, \uf144 = freetube, \uf1bc = spotify, \uf2ce = pocketcasts */
 static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "󰦔" };
 static const Rule rules[] = {
 	/* xprop(1):
