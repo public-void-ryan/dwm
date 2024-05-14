@@ -921,14 +921,64 @@ dirtomon(int dir)
 	return m;
 }
 
+// void
+// drawbar(Monitor *m)
+// {
+// 	int x, w, tw = 0;
+// 	int boxs = drw->fonts->h / 9;
+// 	int boxw = drw->fonts->h / 6 + 2;
+// 	unsigned int i, occ = 0, urg = 0;
+// 	Client *c;
+
+// 	/* draw status first so it can be overdrawn by tags later */
+// 	if (m == selmon) { /* status is only drawn on selected monitor */
+// 		drw_setscheme(drw, scheme[SchemeNorm]);
+// 		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+// 		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
+// 	}
+
+// 	for (c = m->clients; c; c = c->next) {
+// 		occ |= c->tags == 255 ? 0 : c->tags;
+// 		if (c->isurgent)
+// 			urg |= c->tags;
+// 	}
+// 	x = 0;
+// 	for (i = 0; i < LENGTH(tags); i++) {
+// 		/* do not draw vacant tags */
+// 		if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+// 		continue;
+
+// 		w = TEXTW(tags[i]);
+// 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+// 		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+// 		x += w;
+// 	}
+// 	w = blw = TEXTW(m->ltsymbol);
+// 	drw_setscheme(drw, scheme[SchemeNorm]);
+// 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+
+// 	if ((w = m->ww - tw - x) > bh) {
+// 		if (m->sel) {
+// 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+// 			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
+// 			if (m->sel->isfloating)
+// 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+// 		} else {
+// 			drw_setscheme(drw, scheme[SchemeNorm]);
+// 			drw_rect(drw, x, 0, w, bh, 1, 1);
+// 		}
+// 	}
+// 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
+// }
+
 void
 drawbar(Monitor *m)
 {
-	int x, w, tw = 0;
-	int boxs = drw->fonts->h / 9;
-	int boxw = drw->fonts->h / 6 + 2;
-	unsigned int i, occ = 0, urg = 0;
-	Client *c;
+    int x, w, tw = 0;
+    int boxs = drw->fonts->h / 9;
+    int boxw = drw->fonts->h / 6 + 2;
+    unsigned int i, occ = 0, urg = 0;
+    Client *c;
 
 	/* draw status first so it can be overdrawn by tags later */
 	if (m == selmon) { /* status is only drawn on selected monitor */
@@ -937,25 +987,31 @@ drawbar(Monitor *m)
 		drw_text(drw, m->ww - tw, 0, tw, bh, lrpad / 2, stext, 0);
 	}
 
-	for (c = m->clients; c; c = c->next) {
-		occ |= c->tags == 255 ? 0 : c->tags;
-		if (c->isurgent)
-			urg |= c->tags;
-	}
-	x = 0;
-	for (i = 0; i < LENGTH(tags); i++) {
-		/* do not draw vacant tags */
-		if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
-		continue;
+    /* draw status first so it can be overdrawn by tags later */
+    if (m == selmon) { /* status is only drawn on selected monitor */
+        drw_setscheme(drw, scheme[SchemeNorm]);
+        tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+        drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
+    }
 
-		w = TEXTW(tags[i]);
-		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
-		drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
-		x += w;
-	}
-	w = blw = TEXTW(m->ltsymbol);
-	drw_setscheme(drw, scheme[SchemeNorm]);
-	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+    for (c = m->clients; c; c = c->next) {
+        occ |= c->tags == 255 ? 0 : c->tags;
+        if (c->isurgent)
+            urg |= c->tags;
+    }
+    x = 0;
+    for (i = 0; i < LENGTH(tags); i++) {
+        /* do not draw vacant tags */
+        if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+            continue;
+        w = TEXTW(tags[i]);
+        drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeSel : SchemeNorm]);
+        drw_text(drw, x, 0, w, bh, lrpad / 2, tags[i], urg & 1 << i);
+        x += w;
+    }
+    w = blw = TEXTW(m->ltsymbol);
+    drw_setscheme(drw, scheme[SchemeNorm]);
+    x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
 
 	if ((w = m->ww - tw - x) > bh) {
 		if (m->sel) {
@@ -970,6 +1026,7 @@ drawbar(Monitor *m)
 	}
 	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
 }
+
 
 void
 drawbars(void)
