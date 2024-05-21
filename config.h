@@ -174,8 +174,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD(TERMINAL " -e sudo nmtui") },
 	{ MODKEY,			XK_e,		spawn,		SHCMD("thunderbird") },
 	{ MODKEY,			XK_v,		spawn,		SHCMD("clipmenu") },
-	{ MODKEY, XK_r, spawn, SHCMD("setsid thunar") },
-	{ MODKEY|ShiftMask,		XK_r,	spawn,		SHCMD("lfub") },
+	{ MODKEY|ShiftMask, 			XK_r, 		spawn, SHCMD("setsid thunar") },
+	{ MODKEY, 			XK_r, 		spawn, 		SHCMD(TERMINAL " -e lfub") },
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
 	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[1]} }, /* bstack */
 	{ MODKEY,			XK_y,		spawn,		SHCMD("freetube") },
