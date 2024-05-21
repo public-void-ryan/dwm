@@ -1948,7 +1948,14 @@ setup(void)
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h;
 	bh = drw->fonts->h + 2;
+<<<<<<< HEAD
 	updategeom();
+=======
+<<<<<<< HEAD
+	updategeom();
+=======
+>>>>>>> 73caf8b (s)
+>>>>>>> bff5eed (s)
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
