@@ -179,10 +179,6 @@ static Key keys[] = {
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
 	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[1]} }, /* bstack */
 	{ MODKEY,			XK_y,		spawn,		SHCMD("freetube") },
-/*	{ MODKEY,			XK_u,		setlayout,	{.v = &layouts[4]} },  deck */
-/*	{ MODKEY|ShiftMask,		XK_u,		setlayout,	{.v = &layouts[5]} },  monocle */
-/*	{ MODKEY,			XK_i,		setlayout,	{.v = &layouts[6]} },  centeredmaster */
-/*	{ MODKEY|ShiftMask,		XK_i,		setlayout,	{.v = &layouts[10]} }, centeredfloatingmaster */
 /*	{ MODKEY,			XK_o,		incnmaster,     {.i = +1 } }, */
 /*	{ MODKEY|ShiftMask,		XK_o,		incnmaster,     {.i = -1 } }, */
 	{ MODKEY,			XK_p,		spawn,		SHCMD("pocket-casts-linux") },
@@ -267,7 +263,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_space,	zoom,		{0} },
 	{ MODKEY|ShiftMask,		XK_space,	togglefloating,	{0} },
 
-	{ ShiftMask,			XK_Print,	spawn,		SHCMD("maimpick") },
+	{ ShiftMask,			XK_Print,	spawn,		SHCMD("flameshot gui --raw | tesseract stdin stdout | xclip -in -selection clipboard") },
 	{ 0,			        XK_Print,  spawn,	   {.v = prtscrcmd } },
 	{ MODKEY,			XK_Print,	spawn,		SHCMD("dmenurecord") },
 	{ MODKEY|ShiftMask,		XK_Print,	spawn,		SHCMD("dmenurecord kill") },
