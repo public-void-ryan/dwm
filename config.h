@@ -203,7 +203,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_h,		spawn,      SHCMD("hyphenate") },
 	{ MODKEY,			XK_l,		setmfact,      	{.f = +0.05} },
 	{ MODKEY|ShiftMask,			XK_l,		spawn,		SHCMD("lutris") },
-	{ MODKEY,			XK_semicolon,	shif9tview,	{ .i = 1 } },
+	{ MODKEY,			XK_semicolon,	shiftview,	{ .i = 1 } },
 	{ MODKEY|ShiftMask,		XK_semicolon,	shifttag,	{ .i = 1 } },
 	{ MODKEY,			XK_apostrophe,	togglescratch,	{.ui = 1} },
 	{ MODKEY|ShiftMask,		XK_apostrophe,	togglesmartgaps,	{0} },
