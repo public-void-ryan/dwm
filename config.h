@@ -13,8 +13,12 @@ static int swallowfloating = 0;	  /* 1 means swallow floating windows by default
 static int smartgaps = 1;		  /* 1 means no outer gap when there is only one window */
 static int showbar = 1;			  /* 0 means no bar */
 static int topbar = 1;			  /* 0 means bottom bar */
+<<<<<<< HEAD
 static char *fonts[] = {"HackNerdFont:size=12"};
 // static char *fonts[]          = { "ubuntu:size=16","fontawesome:size=16","monospace:size=16", "NotoColorEmoji:pixelsize=16:antialias=true:autohint=true"  };
+=======
+static char *fonts[] = {"HackNerdFont:size=12:antialias=true"};
+>>>>>>> 6f9f1d8 (font alias)
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#ffffff";
 static char normfgcolor[] = "#bbbbbb";
@@ -34,7 +38,11 @@ typedef struct
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x24", NULL};
+<<<<<<< HEAD
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "HackNerdFont:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL};
+=======
+const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL};
+>>>>>>> 6f9f1d8 (font alias)
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm", spcmd1},
@@ -220,7 +228,11 @@ static Key keys[] = {
 	{MODKEY, XK_n, spawn, SHCMD("obsidian")},
 	{MODKEY | ShiftMask, XK_n, spawn, SHCMD(TERMINAL " -e newsboat; pkill -RTMIN+6 dwmblocks")},
 	{MODKEY, XK_m, spawn, SHCMD("mpv --force-window --idle")},
+<<<<<<< HEAD
 	{MODKEY | ShiftMask, XK_m, spawn, SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)")},
+=======
+	// { MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },
+>>>>>>> 6f9f1d8 (font alias)
 	{MODKEY, XK_comma, spawn, SHCMD("mpc prev")},
 	{MODKEY | ShiftMask, XK_comma, spawn, SHCMD("mpc seek 0%")},
 	{MODKEY, XK_period, spawn, SHCMD("mpc next")},
