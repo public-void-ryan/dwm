@@ -215,6 +215,7 @@ static Key keys[] = {
 	{MODKEY, XK_x, incrgaps, {.i = -3}},
 	{MODKEY, XK_c, spawn, SHCMD("code")},
 	{MODKEY, XK_b, togglebar, {0}},
+	{MODKEY, XK_grave, spawn, SHCMD("pgrep trayer && pkill trayer || trayer --edge top --align right --SetDockType false --widthtype request --heighttype request --transparent true --alpha 0 --tint 0x000000 --distance 30 --monitor primary")},
 	{MODKEY, XK_n, spawn, SHCMD("obsidian")},
 	{MODKEY | ShiftMask, XK_n, spawn, SHCMD(TERMINAL " -c newsboat -e newsboat")},
 	{MODKEY, XK_m, spawn, SHCMD("mpv --force-window --idle")},
