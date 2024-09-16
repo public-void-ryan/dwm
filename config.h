@@ -42,27 +42,31 @@ static Sp scratchpads[] = {
 
 /* tagging */
 static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "󰦔"};
+
+/* Define tag constants */
+#define TAG1 (1 << 0)
+#define TAG2 (1 << 1)
+#define TAG3 (1 << 2)
+#define TAG4 (1 << 3)
+#define TAG5 (1 << 4)
+#define TAG6 (1 << 5)
+#define TAG7 (1 << 6)
+#define TAG8 (1 << 7)
+
+/* Update rules[] array */
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class    instance      title       	 tags mask    isfloating   isterminal  noswallow  monitor */
-	{"firefox", NULL, NULL, 1 << 1, 0, 0, 0, -1},
-	{"Spotify", "spotify", NULL, 1 << 5, 0, 0, 0, -1},
+	/* class         instance      title           tags mask   isfloating   isterminal  noswallow  monitor */
 	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-	{"pocket-casts-linux", NULL, NULL, 1 << 6, 0, 0, 0, -1},
-	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-	{"thunderbird", NULL, NULL, 1 << 3, 0, 0, 0, -1},
-	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-	{"FreeTube", "freetube", NULL, 1 << 4, 0, 0, 0, -1},
-	{"obsidian", "obsidian", NULL, 1 << 2, 0, 0, 0, -1},
-	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-	/*	{ "mpv",     "gl",        NULL,             0,            1,           0,         0,        -1 }, */
-	{NULL, "bg", NULL, 0, 0, 1, 1 << 7, -1},
+	{"firefox", NULL, NULL, TAG2, 0, 0, 0, -1},
+	{"Spotify", "spotify", NULL, TAG6, 0, 0, 0, -1},
+	{"pocket-casts-linux", NULL, NULL, TAG7, 0, 0, 0, -1},
+	{"thunderbird", NULL, NULL, TAG4, 0, 0, 0, -1},
+	{"FreeTube", "freetube", NULL, TAG5, 0, 0, 0, -1},
+	{"obsidian", "obsidian", NULL, TAG3, 0, 0, 0, -1},
+	{NULL, "bg", NULL, TAG8, 0, 1, 0, -1},
 	{NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
 	{NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
-	{NULL, NULL, "Event Tester", 0, 0, 0, 1, -1},
+	{NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
 };
 
 /* layout(s) */
@@ -71,10 +75,11 @@ static int nmaster = 1;		/* number of clients in master area */
 static int resizehints = 0; /* 1 means respect size hints in tiled resizals */
 #define FORCE_VSPLIT 1		/* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{"", tile},	 /* Default: Master on left, slaves on right */
-	{"", bstack}, /* Master on top, slaves on bottom */
+	{"", bstack}, /* Master on top, slaMaster in middle, slaves on sides */
 
 	{"[@]", spiral},   /* Fibonacci spiral */
 	{"[\\]", dwindle}, /* Decreasing in size right and leftward */
