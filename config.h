@@ -122,6 +122,8 @@ static const Layout layouts[] = {
 static const char *termcmd[] = {TERMINAL, NULL};
 static const char *ocr_cmd[] = {"/home/ryan/.local/bin/ocr", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
+static const char *launcherduncmd[] = { "rofi", "-show", "drun", NULL };
+static const char *launcherruncmd[] = { "rofi", "-show", "run", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -188,10 +190,11 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_t, setlayout, {.v = &layouts[1]}}, /* bstack */
 	{MODKEY, XK_y, spawn, SHCMD("freetube")},
 	{MODKEY, XK_p, spawn, SHCMD("pocket-casts-linux")},
+	{ MODKEY | ShiftMask,			XK_p,          spawn,                  {.v = (const char*[]){ "mpc", "toggle", NULL } } },
 	/* Bitwarden Menu commands*/
-	{MODKEY | ShiftMask, XK_u, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu username | xclip -selection clipboard'")},
-	{MODKEY | ShiftMask, XK_p, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu password | xclip -selection clipboard'")},
-	{MODKEY | ShiftMask, XK_o, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu code | xclip -selection clipboard'")},
+	// {MODKEY | ShiftMask, XK_u, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu username | xclip -selection clipboard'")},
+	// {MODKEY | ShiftMask, XK_p, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu password | xclip -selection clipboard'")},
+	// {MODKEY | ShiftMask, XK_o, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu code | xclip -selection clipboard'")},
 	{MODKEY | ShiftMask, XK_p, spawn, SHCMD("mpc pause ; pauseallmpv")},
 	{MODKEY, XK_bracketleft, spawn, SHCMD("mpc seek -10")},
 	{MODKEY | ShiftMask, XK_bracketleft, spawn, SHCMD("mpc seek -60")},
@@ -202,7 +205,9 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
 	{MODKEY, XK_s, spawn, SHCMD("spotify_wrapper")},
 	{MODKEY | ShiftMask, XK_s, togglesticky, {0}},
-	{MODKEY, XK_d, spawn, SHCMD("dmenu_run")},
+	{ MODKEY, XK_d, spawn, {.v = launcherduncmd} },
+	{ MODKEY | ShiftMask, XK_d, spawn, {.v = launcherruncmd} },
+	// {MODKEY, XK_d, spawn, SHCMD("dmenu_run")},
 	{MODKEY | ShiftMask, XK_d, spawn, SHCMD("dmenu_extended_run")},
 	{MODKEY, XK_f, togglefullscr, {0}},
 	{MODKEY | ShiftMask, XK_f, setlayout, {.v = &layouts[8]}},
@@ -227,7 +232,7 @@ static Key keys[] = {
 	{MODKEY, XK_n, spawn, SHCMD("obsidian")},
 	{MODKEY | ShiftMask, XK_n, spawn, SHCMD(TERMINAL " -c newsboat -e newsboat")},
 	{MODKEY, XK_m, spawn, SHCMD("mpv --force-window --idle")},
-	{MODKEY | ShiftMask, XK_m, spawn, SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)")},
+	{MODKEY | ShiftMask, XK_m, spawn, {.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
 	{MODKEY, XK_comma, spawn, SHCMD("mpc prev")},
 	{MODKEY | ShiftMask, XK_comma, spawn, SHCMD("mpc seek 0%")},
 	{MODKEY, XK_period, spawn, SHCMD("mpc next")},
