@@ -337,7 +337,8 @@ static Button buttons[] = {
 	{ClkStatusText, ShiftMask, Button1, sigdwmblocks, {.i = 6}},
 	{ClkStatusText, ShiftMask, Button2, sigdwmblocks, {.i = 7}},
 #endif
-	{ClkStatusText, ShiftMask, Button3, spawn, SHCMD(TERMINAL " -e nvim ~/.local/src/dwmblocks/config.h")},
+	{ClkStatusText, ShiftMask, Button3, spawn, SHCMD("code ~/.local/src/dwmblocks/config.h")},
+
 	{ClkClientWin, MODKEY, Button1, movemouse, {0}},
 	{ClkClientWin, MODKEY, Button2, defaultgaps, {0}},
 	{ClkClientWin, MODKEY, Button3, resizemouse, {0}},
