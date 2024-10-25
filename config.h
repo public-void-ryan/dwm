@@ -58,6 +58,7 @@ static const Rule rules[] = {
 	/* class         instance      title           tags mask   isfloating   isterminal  noswallow  monitor */
 	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
 	{"firefox", NULL, NULL, TAG2, 0, 0, 0, -1},
+	{"LibreWolf", NULL, NULL, TAG2, 0, 0, 0, -1},
 	{"Spotify", "spotify", NULL, TAG6, 0, 0, 0, -1},
 	{"pocket-casts-linux", NULL, NULL, TAG7, 0, 0, 0, -1},
 	{"thunderbird", NULL, NULL, TAG4, 0, 0, 0, -1},
@@ -122,8 +123,7 @@ static const Layout layouts[] = {
 static const char *termcmd[] = {TERMINAL, NULL};
 static const char *ocr_cmd[] = {"/home/ryan/.local/bin/ocr", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
-static const char *launcherduncmd[] = { "rofi", "-show", "drun", NULL };
-static const char *launcherruncmd[] = { "rofi", "-show", "run", NULL };
+static const char *launcherduncmd[] = { "/home/ryan/.local/bin/launcher", NULL };
 
 /*
  * Xresources preferences to load at startup
@@ -175,8 +175,8 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_minus, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%-; kill -44 $(pidof dwmblocks)")},
 	{MODKEY, XK_equal, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)")},
 	{MODKEY | ShiftMask, XK_equal, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)")},
-	{MODKEY, XK_BackSpace, spawn, SHCMD("sysact")},
-	{MODKEY | ShiftMask, XK_BackSpace, spawn, SHCMD("sysact")},
+	{MODKEY, XK_BackSpace, spawn, SHCMD("powermenu")},
+	{MODKEY | ShiftMask, XK_BackSpace, spawn, SHCMD("sysactrofi")},
 	{MODKEY, XK_Tab, view, {0}},
 	{MODKEY, XK_q, killclient, {0}},
 	{MODKEY | ShiftMask, XK_q, spawn, SHCMD("sysact")},
@@ -206,8 +206,6 @@ static Key keys[] = {
 	{MODKEY, XK_s, spawn, SHCMD("spotify_wrapper")},
 	{MODKEY | ShiftMask, XK_s, togglesticky, {0}},
 	{ MODKEY, XK_d, spawn, {.v = launcherduncmd} },
-	{ MODKEY | ShiftMask, XK_d, spawn, {.v = launcherruncmd} },
-	// {MODKEY, XK_d, spawn, SHCMD("dmenu_run")},
 	{MODKEY | ShiftMask, XK_d, spawn, SHCMD("dmenu_extended_run")},
 	{MODKEY, XK_f, togglefullscr, {0}},
 	{MODKEY | ShiftMask, XK_f, setlayout, {.v = &layouts[8]}},
