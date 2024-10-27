@@ -176,7 +176,7 @@ static Key keys[] = {
 	{MODKEY, XK_equal, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)")},
 	{MODKEY | ShiftMask, XK_equal, spawn, SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)")},
 	{MODKEY, XK_BackSpace, spawn, SHCMD("powermenu")},
-	{MODKEY | ShiftMask, XK_BackSpace, spawn, SHCMD("sysactrofi")},
+	{MODKEY | ShiftMask, XK_BackSpace, spawn, SHCMD("powermenu")},
 	{MODKEY, XK_Tab, view, {0}},
 	{MODKEY, XK_q, killclient, {0}},
 	{MODKEY | ShiftMask, XK_q, spawn, SHCMD("sysact")},
