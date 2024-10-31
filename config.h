@@ -58,7 +58,6 @@ static const Rule rules[] = {
 	/* class         instance      title           tags mask   isfloating   isterminal  noswallow  monitor */
 	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
 	{"firefox", NULL, NULL, TAG2, 0, 0, 0, -1},
-	{"LibreWolf", NULL, NULL, TAG2, 0, 0, 0, -1},
 	{"Spotify", "spotify", NULL, TAG6, 0, 0, 0, -1},
 	{"pocket-casts-linux", NULL, NULL, TAG7, 0, 0, 0, -1},
 	{"thunderbird", NULL, NULL, TAG4, 0, 0, 0, -1},
