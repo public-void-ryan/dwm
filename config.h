@@ -123,6 +123,8 @@ static const char *termcmd[] = {TERMINAL, NULL};
 static const char *ocr_cmd[] = {"/home/ryan/.local/bin/ocr", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
 static const char *launcherduncmd[] = { "/home/ryan/.local/bin/launcher", NULL };
+static const char *launcherruncmd[] = { "/home/ryan/.local/bin/launchercmd", NULL };
+
 
 /*
  * Xresources preferences to load at startup
@@ -204,8 +206,8 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
 	{MODKEY, XK_s, spawn, SHCMD("spotify_wrapper")},
 	{MODKEY | ShiftMask, XK_s, togglesticky, {0}},
-	{ MODKEY, XK_d, spawn, {.v = launcherduncmd} },
-	{MODKEY | ShiftMask, XK_d, spawn, SHCMD("dmenu_extended_run")},
+	{MODKEY, XK_d, spawn, {.v = launcherduncmd} },
+	{MODKEY | ShiftMask, XK_d, spawn, {.v = launcherruncmd} },
 	{MODKEY, XK_f, togglefullscr, {0}},
 	{MODKEY | ShiftMask, XK_f, setlayout, {.v = &layouts[8]}},
 	{MODKEY, XK_g, shiftview, {.i = -1}},
