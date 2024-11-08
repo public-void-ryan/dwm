@@ -212,6 +212,7 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_g, shifttag, {.i = -1}},
 	{MODKEY, XK_h, setmfact, {.f = -0.05}},
 	{MODKEY | ShiftMask, XK_h, spawn, SHCMD("hyphenate")},
+	{MODKEY | ShiftMask, XK_k, spawn, SHCMD("xkill")},
 	{MODKEY, XK_l, setmfact, {.f = +0.05}},
 	{MODKEY | ShiftMask, XK_l, spawn, SHCMD("lutris")},
 	{MODKEY, XK_semicolon, shiftview, {.i = 1}},
