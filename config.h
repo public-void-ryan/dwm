@@ -252,7 +252,7 @@ static Key keys[] = {
 	{MODKEY, XK_F5, xrdb, {.v = NULL}},
 	{MODKEY, XK_F6, spawn, SHCMD("torwrap")},
 	{MODKEY, XK_F7, spawn, SHCMD("td-toggle")},
-	{MODKEY, XK_F8, spawn, SHCMD("dmenubluetooth")},
+	{MODKEY, XK_F8, spawn, SHCMD("rofibluetooth")},
 	{MODKEY, XK_F9, spawn, SHCMD("mounter")},
 	{MODKEY, XK_F10, spawn, SHCMD("unmounter")},
 	{MODKEY, XK_F11, spawn, SHCMD("mpv --untimed --no-cache --no-osc --no-input-default-bindings --profile=low-latency --input-conf=/dev/null --geometry=+50%+50% --title=webcam $(ls /dev/video[0,2,4,6,8] | tail -n 1)")},
