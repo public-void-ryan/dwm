@@ -191,7 +191,7 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_t, setlayout, {.v = &layouts[1]}}, /* bstack */
 	{MODKEY, XK_y, spawn, SHCMD("freetube")},
 	{MODKEY, XK_p, spawn, SHCMD("pocket-casts-linux")},
-	{ MODKEY | ShiftMask,			XK_p,          spawn,                  {.v = (const char*[]){ "mpc", "toggle", NULL } } },
+	{ MODKEY | ShiftMask,			XK_p,          spawn,  SHCMD("colorpicker")},           
 	/* Bitwarden Menu commands*/
 	// {MODKEY | ShiftMask, XK_u, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu username | xclip -selection clipboard'")},
 	// {MODKEY | ShiftMask, XK_p, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu password | xclip -selection clipboard'")},
