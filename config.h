@@ -53,24 +53,24 @@ static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "�
 #define TAG7 (1 << 6)
 #define TAG8 (1 << 7)
 
-/* Update rules[] array */
 static const Rule rules[] = {
-	/* class         instance      title           tags mask   isfloating   isterminal  noswallow  monitor */
-	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-	{"firefox", NULL, NULL, TAG2, 0, 0, 0, -1},
-	{"Spotify", "spotify", NULL, TAG6, 0, 0, 0, -1},
-	{"pocket-casts-linux", NULL, NULL, TAG7, 0, 0, 0, -1},
-	{"thunderbird", NULL, NULL, TAG4, 0, 0, 0, -1},
-	{"FreeTube", "freetube", NULL, TAG5, 0, 0, 0, -1},
-	{"obsidian", "obsidian", NULL, TAG3, 0, 0, 0, -1},
-	{NULL, "bg", NULL, TAG8, 0, 1, 0, -1},
-	{NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
-	{NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
-	{NULL, NULL, "Event Tester", 0, 0, 0, 1, -1}, /* xev */
-	{"WowUpCf", NULL, NULL, 0, 1, 0, 0, -1}, /* wowup-cf */
-	{"battle.net.exe", NULL, NULL, 0, 1, 0, 0, -1}, /* battle.net */
-
+	/* class               instance       title            tags mask   isfloating   isterminal  noswallow  monitor */
+	{ TERMCLASS,          NULL,          NULL,            0,          0,           1,          0,         -1 },
+	{ "firefox",          NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
+	{ "Spotify",          "spotify",     NULL,            TAG6,       0,           0,          0,         -1 },
+	{ "pocket-casts-linux", NULL,        NULL,            TAG7,       0,           0,          0,         -1 },
+	{ "thunderbird",      NULL,          NULL,            TAG4,       0,           0,          0,         -1 },
+	{ "FreeTube",         "freetube",    NULL,            TAG5,       0,           0,          0,         -1 },
+	{ "obsidian",         "obsidian",    NULL,            TAG3,       0,           0,          0,         -1 },
+	{ NULL,               "bg",          NULL,            TAG8,       0,           1,          0,         -1 },
+	{ NULL,               "spterm",      NULL,            SPTAG(0),   1,           1,          0,         -1 },
+	{ NULL,               "spcalc",      NULL,            SPTAG(1),   1,           1,          0,         -1 },
+	{ NULL,               NULL,          "Event Tester",  0,          0,           0,          1,         -1 },
+	{ "WowUpCf",          NULL,          NULL,            0,          1,           0,          0,         -1 },
+	{ "battle.net.exe",   NULL,          NULL,            0,          1,           0,          0,         -1 }, 
+	{ "Qalculate-gtk",    NULL,          NULL,            0,          1,           0,          0,         -1 },
 };
+
 
 /* layout(s) */
 static float mfact = 0.50;	/* factor of master area size [0.05..0.95] */
@@ -182,7 +182,7 @@ static Key keys[] = {
 	{MODKEY, XK_q, killclient, {0}},
 	{MODKEY | ShiftMask, XK_q, spawn, SHCMD("sysact")},
 	{MODKEY, XK_w, spawn, SHCMD("$BROWSER")},
-	{MODKEY | ShiftMask, XK_w, spawn, SHCMD(TERMINAL " -e sudo nmtui")},
+	{MODKEY | ShiftMask, XK_w, spawn, SHCMD("define_word")},
 	{MODKEY, XK_e, spawn, SHCMD("thunderbird")},
 	{MODKEY, XK_v, spawn, SHCMD("clipmenu")},
 	{MODKEY | ShiftMask, XK_r, spawn, SHCMD("setsid thunar")},
