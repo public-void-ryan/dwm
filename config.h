@@ -57,6 +57,7 @@ static const Rule rules[] = {
 	/* class               instance       title            tags mask   isfloating   isterminal  noswallow  monitor */
 	{ TERMCLASS,          NULL,          NULL,            0,          0,           1,          0,         -1 },
 	{ "firefox",          NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
+	{ "zen",          NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
 	{ "Spotify",          "spotify",     NULL,            TAG6,       0,           0,          0,         -1 },
 	{ "pocket-casts-linux", NULL,        NULL,            TAG7,       0,           0,          0,         -1 },
 	{ "thunderbird",      NULL,          NULL,            TAG4,       0,           0,          0,         -1 },
@@ -185,6 +186,7 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_w, spawn, SHCMD("define_word")},
 	{MODKEY, XK_e, spawn, SHCMD("thunderbird")},
 	{MODKEY, XK_v, spawn, SHCMD("clipmenu")},
+	{MODKEY | ShiftMask, XK_v, spawn, SHCMD(TERMINAL " -e nvim")},
 	{MODKEY | ShiftMask, XK_r, spawn, SHCMD("setsid thunar")},
 	{MODKEY, XK_r, spawn, SHCMD(TERMINAL " -e lfub")},
 	{MODKEY, XK_t, setlayout, {.v = &layouts[0]}},			   /* tile */
