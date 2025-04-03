@@ -56,8 +56,8 @@ static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "�
 static const Rule rules[] = {
 	/* class               instance       title            tags mask   isfloating   isterminal  noswallow  monitor */
 	{ TERMCLASS,          NULL,          NULL,            0,          0,           1,          0,         -1 },
-	{ "firefox",          NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
-	{ "zen",          NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
+	{ "librewolf",        NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
+	{ "vesktop",          NULL,          NULL,            TAG1,       0,           0,          0,          1 }, /*right monitor*/
 	{ "Spotify",          "spotify",     NULL,            TAG6,       0,           0,          0,         -1 },
 	{ "pocket-casts-linux", NULL,        NULL,            TAG7,       0,           0,          0,         -1 },
 	{ "thunderbird",      NULL,          NULL,            TAG4,       0,           0,          0,         -1 },
@@ -186,8 +186,9 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_w, spawn, SHCMD("define_word")},
 	{MODKEY, XK_e, spawn, SHCMD("thunderbird")},
 	{MODKEY, XK_v, spawn, SHCMD("clipmenu")},
-	{MODKEY | ShiftMask, XK_v, spawn, SHCMD(TERMINAL " -e nvim")},
+	{MODKEY | ShiftMask, XK_v, spawn, SHCMD("vesktop")},
 	{MODKEY | ShiftMask, XK_r, spawn, SHCMD("setsid thunar")},
+	{ControlMask | ShiftMask, XK_r, spawn, SHCMD("rssget")},
 	{MODKEY, XK_r, spawn, SHCMD(TERMINAL " -e lfub")},
 	{MODKEY, XK_t, setlayout, {.v = &layouts[0]}},			   /* tile */
 	{MODKEY | ShiftMask, XK_t, setlayout, {.v = &layouts[1]}}, /* bstack */
@@ -235,9 +236,9 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_n, spawn, SHCMD(TERMINAL " -c newsboat -e newsboat")},
 	{MODKEY, XK_m, spawn, SHCMD("mpv --force-window --idle")},
 	{MODKEY | ShiftMask, XK_m, spawn, {.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
-	{MODKEY, XK_comma, spawn, SHCMD("mpc prev")},
+	{MODKEY, XK_comma, spawn, SHCMD("playerctl previous")},
 	{MODKEY | ShiftMask, XK_comma, spawn, SHCMD("mpc seek 0%")},
-	{MODKEY, XK_period, spawn, SHCMD("mpc next")},
+	{MODKEY, XK_period, spawn, SHCMD("playerctl next")},
 	{MODKEY | ShiftMask, XK_period, spawn, SHCMD("mpc repeat")},
 
 	{MODKEY, XK_Left, focusmon, {.i = -1}},
