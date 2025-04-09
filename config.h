@@ -70,6 +70,7 @@ static const Rule rules[] = {
 	{ "WowUpCf",          NULL,          NULL,            0,          1,           0,          0,         -1 },
 	{ "battle.net.exe",   NULL,          NULL,            0,          1,           0,          0,         -1 }, 
 	{ "Qalculate-gtk",    NULL,          NULL,            0,          1,           0,          0,         -1 },
+	{ "steam_app_3241660",NULL,          NULL,        	  0,          1,           0,          0,         -1 },
 };
 
 
@@ -79,6 +80,11 @@ static int nmaster = 1;		/* number of clients in master area */
 static int resizehints = 0; /* 1 means respect size hints in tiled resizals */
 #define FORCE_VSPLIT 1		/* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
+
+static const int lpm[] = {
+        /* Index of preferred layout], if LENGTH(lpm)<#monitors -> default layout */
+        0, 1
+};
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
