@@ -70,7 +70,9 @@ static const Rule rules[] = {
 	{ "WowUpCf",          NULL,          NULL,            0,          1,           0,          0,         -1 },
 	{ "battle.net.exe",   NULL,          NULL,            0,          1,           0,          0,         -1 }, 
 	{ "Qalculate-gtk",    NULL,          NULL,            0,          1,           0,          0,         -1 },
-	{ "steam_app_3241660",NULL,          NULL,        	  0,          1,           0,          0,         -1 },
+	{ "steam_app_",	      NULL,          NULL,        	  0,          1,           0,          0,         -1 },
+	{ "steam",			  NULL,          NULL,        	  0,          1,           0,          0,         -1 },
+	{ "ut2004-bin-linux-amd64",			  NULL,          NULL,        	  0,          1,           0,          0,         -1 },
 };
 
 
