@@ -55,26 +55,25 @@ static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "�
 
 static const Rule rules[] = {
 	/* class               instance       title            tags mask   isfloating   isterminal  noswallow  monitor */
-	{ TERMCLASS,          NULL,          NULL,            0,          0,           1,          0,         -1 },
-	{ "librewolf",        NULL,          NULL,            TAG2,       0,           0,          0,         -1 },
-	{ "vesktop",          NULL,          NULL,            TAG1,       0,           0,          0,          1 }, /*right monitor*/
-	{ "Spotify",          "spotify",     NULL,            TAG6,       0,           0,          0,         -1 },
-	{ "pocket-casts-linux", NULL,        NULL,            TAG7,       0,           0,          0,         -1 },
-	{ "thunderbird",      NULL,          NULL,            TAG4,       0,           0,          0,         -1 },
-	{ "FreeTube",         "freetube",    NULL,            TAG5,       0,           0,          0,         -1 },
-	{ "obsidian",         "obsidian",    NULL,            TAG3,       0,           0,          0,         -1 },
-	{ NULL,               "bg",          NULL,            TAG8,       0,           1,          0,         -1 },
-	{ NULL,               "spterm",      NULL,            SPTAG(0),   1,           1,          0,         -1 },
-	{ NULL,               "spcalc",      NULL,            SPTAG(1),   1,           1,          0,         -1 },
-	{ NULL,               NULL,          "Event Tester",  0,          0,           0,          1,         -1 },
-	{ "WowUpCf",          NULL,          NULL,            0,          1,           0,          0,         -1 },
-	{ "battle.net.exe",   NULL,          NULL,            0,          1,           0,          0,         -1 }, 
-	{ "Qalculate-gtk",    NULL,          NULL,            0,          1,           0,          0,         -1 },
-	{ "steam_app_",	      NULL,          NULL,        	  0,          1,           0,          0,         -1 },
-	{ "steam",			  NULL,          NULL,        	  0,          1,           0,          0,         -1 },
-	{ "ut2004-bin-linux-amd64",			  NULL,          NULL,        	  0,          1,           0,          0,         -1 },
+	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
+	{"librewolf", NULL, NULL, TAG2, 0, 0, 0, -1},
+	{"vesktop", NULL, NULL, TAG1, 0, 0, 0, 1}, /*right monitor*/
+	{"Spotify", "spotify", NULL, TAG6, 0, 0, 0, -1},
+	{"pocket-casts-linux", NULL, NULL, TAG7, 0, 0, 0, -1},
+	{"thunderbird", NULL, NULL, TAG4, 0, 0, 0, -1},
+	{"FreeTube", "freetube", NULL, TAG5, 0, 0, 0, -1},
+	{"obsidian", "obsidian", NULL, TAG3, 0, 0, 0, -1},
+	{NULL, "bg", NULL, TAG8, 0, 1, 0, -1},
+	{NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
+	{NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
+	{NULL, NULL, "Event Tester", 0, 0, 0, 1, -1},
+	{"WowUpCf", NULL, NULL, 0, 1, 0, 0, -1},
+	{"battle.net.exe", NULL, NULL, 0, 1, 0, 0, -1},
+	{"Qalculate-gtk", NULL, NULL, 0, 1, 0, 0, -1},
+	{"steam_app_", NULL, NULL, 0, 1, 0, 0, -1},
+	{"steam", NULL, NULL, 0, 1, 0, 0, -1},
+	{"ut2004-bin-linux-amd64", NULL, NULL, 0, 1, 0, 0, -1},
 };
-
 
 /* layout(s) */
 static float mfact = 0.50;	/* factor of master area size [0.05..0.95] */
@@ -84,10 +83,8 @@ static int resizehints = 0; /* 1 means respect size hints in tiled resizals */
 #include "vanitygaps.c"
 
 static const int lpm[] = {
-        /* Index of preferred layout], if LENGTH(lpm)<#monitors -> default layout */
-        0, 1
-};
-
+	/* Index of preferred layout], if LENGTH(lpm)<#monitors -> default layout */
+	0, 1};
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{"", tile},	 /* Default: Master on left, slaves on right */
@@ -131,9 +128,8 @@ static const Layout layouts[] = {
 static const char *termcmd[] = {TERMINAL, NULL};
 static const char *ocr_cmd[] = {"/home/ryan/.local/bin/ocr", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
-static const char *launcherduncmd[] = { "/home/ryan/.local/bin/launcher", NULL };
-static const char *launcherruncmd[] = { "/home/ryan/.local/bin/launchercmd", NULL };
-
+static const char *launcherduncmd[] = {"/home/ryan/.local/bin/launcher", NULL};
+static const char *launcherruncmd[] = {"/home/ryan/.local/bin/launchercmd", NULL};
 
 /*
  * Xresources preferences to load at startup
@@ -202,7 +198,7 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_t, setlayout, {.v = &layouts[1]}}, /* bstack */
 	{MODKEY, XK_y, spawn, SHCMD("freetube")},
 	{MODKEY, XK_p, spawn, SHCMD("pocket-casts-linux")},
-	{ MODKEY | ShiftMask,			XK_p,          spawn,  SHCMD("colorpicker")},           
+	{MODKEY | ShiftMask, XK_p, spawn, SHCMD("colorpicker")},
 	/* Bitwarden Menu commands*/
 	// {MODKEY | ShiftMask, XK_u, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu username | xclip -selection clipboard'")},
 	// {MODKEY | ShiftMask, XK_p, spawn, SHCMD("/bin/sh -c 'RBW_MENU_COMMAND=\"dmenu -i\" rbw-menu password | xclip -selection clipboard'")},
@@ -217,8 +213,8 @@ static Key keys[] = {
 	{MODKEY | ShiftMask, XK_a, defaultgaps, {0}},
 	{MODKEY, XK_s, spawn, SHCMD("spotify_wrapper")},
 	{MODKEY | ShiftMask, XK_s, togglesticky, {0}},
-	{MODKEY, XK_d, spawn, {.v = launcherduncmd} },
-	{MODKEY | ShiftMask, XK_d, spawn, {.v = launcherruncmd} },
+	{MODKEY, XK_d, spawn, {.v = launcherduncmd}},
+	{MODKEY | ShiftMask, XK_d, spawn, {.v = launcherruncmd}},
 	{MODKEY, XK_f, togglefullscr, {0}},
 	{MODKEY | ShiftMask, XK_f, setlayout, {.v = &layouts[8]}},
 	{MODKEY, XK_g, shiftview, {.i = -1}},
@@ -243,7 +239,7 @@ static Key keys[] = {
 	{MODKEY, XK_n, spawn, SHCMD("obsidian")},
 	{MODKEY | ShiftMask, XK_n, spawn, SHCMD(TERMINAL " -c newsboat -e newsboat")},
 	{MODKEY, XK_m, spawn, SHCMD("mpv --force-window --idle")},
-	{MODKEY | ShiftMask, XK_m, spawn, {.v = (const char*[]){ TERMINAL, "-e", "ncmpcpp", NULL } } },
+	{MODKEY | ShiftMask, XK_m, spawn, {.v = (const char *[]){TERMINAL, "-e", "ncmpcpp", NULL}}},
 	{MODKEY, XK_comma, spawn, SHCMD("playerctl previous")},
 	{MODKEY | ShiftMask, XK_comma, spawn, SHCMD("mpc seek 0%")},
 	{MODKEY, XK_period, spawn, SHCMD("playerctl next")},

@@ -247,6 +247,7 @@ typedef struct
 } ResourcePref;
 
 /* function declarations */
+static void applydefaultlayouts();
 static void applyrules(Client *c);
 static int applysizehints(Client *c, int *x, int *y, int *w, int *h, int interact);
 static void arrange(Monitor *m);
@@ -426,6 +427,22 @@ struct NumTags
 };
 
 /* function implementations */
+void applydefaultlayouts()
+{
+	Monitor *m;
+	int i = 0;
+	for (m = mons; m; m = m->next)
+	{
+		if (i < LENGTH(lpm))
+		{
+			m->lt[0] = &layouts[lpm[i]];
+			m->lt[1] = &layouts[(lpm[i] + 1) % LENGTH(layouts)];
+			strncpy(m->ltsymbol, layouts[i].symbol, sizeof m->ltsymbol);
+		}
+		i++;
+	}
+}
+
 void applyrules(Client *c)
 {
 	const char *class, *instance;
@@ -2479,6 +2496,7 @@ int updategeom(void)
 				cleanupmon(m);
 			}
 		}
+		applydefaultlayouts();
 		free(unique);
 	}
 	else
