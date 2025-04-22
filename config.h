@@ -13,7 +13,7 @@ static int swallowfloating = 0;	  /* 1 means swallow floating windows by default
 static int smartgaps = 1;		  /* 1 means no outer gap when there is only one window */
 static int showbar = 1;			  /* 0 means no bar */
 static int topbar = 1;			  /* 0 means bottom bar */
-static const int vertpad = 5;	  /* vertical padding of bar */
+static const int vertpad = 0;	  /* vertical padding of bar */
 static const int sidepad = 500;	  /* horizontal padding of bar */
 static char *fonts[] = {"HackNerdFont:size=12:antialias=true"};
 static char normbgcolor[] = "#222222";
