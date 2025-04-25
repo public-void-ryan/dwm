@@ -56,7 +56,8 @@ static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "�
 #define TAG8 (1 << 7)
 
 static const Rule rules[] = {
-	/* class               instance       title            tags mask   isfloating   isterminal  noswallow  monitor */
+	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx
+	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        50,50,500,500,        5 }, */
 	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
 	{"librewolf", NULL, NULL, TAG2, 0, 0, 0, -1},
 	{"vesktop", NULL, NULL, TAG1, 0, 0, 0, 1}, /*right monitor*/
@@ -75,6 +76,8 @@ static const Rule rules[] = {
 	{"steam_app_", NULL, NULL, 0, 1, 0, 0, -1},
 	{"steam", NULL, NULL, 0, 1, 0, 0, -1},
 	{"ut2004-bin-linux-amd64", NULL, NULL, 0, 1, 0, 0, -1},
+	{ NULL, NULL, "Picture in picture", 0, 1, -1 }, // freetube
+	{ "librewolf", "Toolkit", "Picture-in-Picture", 0, 1, -1 },
 };
 
 /* layout(s) */
