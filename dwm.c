@@ -20,6 +20,7 @@
  *
  * To understand everything else, start reading main().
  */
+#define _POSIX_C_SOURCE 200809L
 #include <errno.h>
 #include <locale.h>
 #include <signal.h>
@@ -2615,13 +2616,13 @@ void updatesizehints(Client *c)
 	c->isfixed = (c->maxw && c->maxh && c->maxw == c->minw && c->maxh == c->minh);
 }
 
-void updatestatus(void)
-{
-	if (!gettextprop(root, XA_WM_NAME, rawstext, sizeof(rawstext)))
-		strcpy(stext, "dwm-" VERSION);
-	else
-		copyvalidchars(stext, rawstext);
-	drawbar(selmon);
+void updatestatus(void) {
+    strcpy(stext, "dwm-Ryan");
+    if (!gettextprop(root, XA_WM_NAME, rawstext, sizeof(rawstext)))
+        strcpy(stext, "dwm-Ryan");
+    else
+        copyvalidchars(stext, rawstext);
+    drawbar(selmon);
 }
 
 void updatetitle(Client *c)
@@ -2946,7 +2947,7 @@ void load_xresources(void)
 int main(int argc, char *argv[])
 {
 	if (argc == 2 && !strcmp("-v", argv[1]))
-		die("dwm-" VERSION);
+		die("dwm-");
 	else if (argc != 1)
 		die("usage: dwm [-v]");
 	if (!setlocale(LC_CTYPE, "") || !XSupportsLocale())
