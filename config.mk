@@ -7,8 +7,9 @@ VERSION = ryan
 PREFIX = /usr/local
 MANPREFIX = ${PREFIX}/share/man
 
-X11INC = /usr/X11R6/include
-X11LIB = /usr/X11R6/lib
+# Modern Linux systems often use these paths instead
+X11INC = /usr/include/X11
+X11LIB = /usr/lib/x86_64-linux-gnu
 
 # Xinerama, comment if you don't want it
 XINERAMALIBS  = -lXinerama
@@ -34,5 +35,7 @@ LDFLAGS  = ${LIBS}
 #CFLAGS = -fast ${INCS} -DVERSION=\"${VERSION}\"
 #LDFLAGS = ${LIBS}
 
-# compiler and linker
-CC = cc
+# For explicit compiler choice
+CC = gcc
+# Or for clang:
+# CC = clang
