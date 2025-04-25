@@ -1,6 +1,6 @@
 .TH DWM 1 dwm\-VERSION
 .SH NAME
-dwm \- dynamic window manager (Luke Smith <https://lukesmith.xyz>'s build)
+dwm \- dynamic window manager (Ryan's build)
 .SH SYNOPSIS
 .B dwm
 .RB [ \-v ]
@@ -65,9 +65,10 @@ Start terminal,
 .BR st(1).
 .TP
 .B Super\-d
-Spawn
-.BR dmenu(1)
-for launching other programs.
+Spawn application launcher.
+.TP
+.B Super\-Shift\-d
+Spawn command launcher.
 .TP
 .B Super\-b
 Toggles bar on and off.
@@ -75,23 +76,20 @@ Toggles bar on and off.
 .B Super\-q
 Close focused window.
 .TP
-.B Super\-t/T
-Sets tiled/bstack layouts.
+.B Super\-t
+Sets tiled layout.
+.TP
+.B Super\-Shift\-t
+Sets bstack layout.
 .TP
 .B Super\-f
 Toggle fullscreen window.
 .TP
-.B Super\-F
+.B Super\-Shift\-f
 Toggle floating layout.
 .TP
-.B Super\-y/Y
-Sets Fibonacci spiral/dwinde layouts.
-.TP
-.B Super\-u/U
-Sets centered master layout.
-.TP
-.B Super\-i/I
-Sets centered master or floating master layouts.
+.B Super\-y
+Launch FreeTube.
 .TP
 .B Super\-space
 Zooms/cycles focused window to/from master area.
@@ -102,14 +100,11 @@ Focus next/previous window.
 .B Super\-Shift\-j/k
 Move selected window down/up in stack.
 .TP
-.B Super\-o/O
-Increase/decrease number of windows in master area.
+.B Super\-h
+Decrease master area size.
 .TP
 .B Super\-l
 Increase master area size.
-.TP
-.B Super\-h
-Decrease master area size.
 .TP
 .B Super\-Shift\-space
 Toggle focused window between tiled and floating state.
@@ -123,26 +118,29 @@ Moves to the previous tag.
 .B Super\-Shift\-g
 Moves selected window to the previous tag.
 .TP
-.B Super\-;
+.B Super\-semicolon
 Moves to the next tag.
 .TP
-.B Super\-Shift\-;
+.B Super\-Shift\-semicolon
 Moves selected window to the next tag.
 .TP
-.B Super\-PageUp
+.B Super\-Page_Up
 Moves to the previous tag.
 .TP
-.B Super\-Shift\-PageUp
+.B Super\-Shift\-Page_Up
 Moves selected window to the previous tag.
 .TP
-.B Super\-Pagedown
+.B Super\-Page_Down
 Moves to the next tag.
 .TP
-.B Super\-Shift\-PageDown
+.B Super\-Shift\-Page_Down
 Moves selected window to the next tag.
 .TP
 .B Super\-a
 Toggle gaps.
+.TP
+.B Super\-Shift\-a
+Reset gaps to default.
 .TP
 .B Super\-z
 Increase gaps between windows.
@@ -150,36 +148,64 @@ Increase gaps between windows.
 .B Super\-x
 Decrease gaps between windows.
 .TP
-.B Super\-Shift\-[1..n]
+.B Super\-Shift\-[1..7]
 Apply nth tag to focused window.
 .TP
 .B Super\-Shift\-0
 Apply all tags to focused window.
 .TP
-.B Super\-Control\-Shift\-[1..n]
-Add/remove nth tag to/from focused window.
-.TP
-.B Super\-[1..n]
+.B Super\-[1..7]
 View all windows with nth tag.
 .TP
 .B Super\-0
 View all windows with any tag.
 .TP
-.B Super\-Control\-[1..n]
-Add/remove all windows with nth tag to/from the view.
+.B Super\-BackSpace
+Open power menu.
+.TP
+.B Super\-Print
+Start/stop screen recording.
 .TP
 .B Super\-Shift\-q
-Quit dwm.
+Launch system action menu.
 .TP
-.B Mod1\-Control\-Shift\-q
-Menu to refresh/quit/reboot/shutdown.
+.B Print
+Take screenshot with flameshot.
+.TP
+.B Shift\-Print
+OCR (text recognition) from screen.
+.SS Common applications
+.TP
+.B Super\-w
+Launch web browser.
+.TP
+.B Super\-e
+Launch Thunderbird email client.
+.TP
+.B Super\-r
+Launch file manager (lfub).
+.TP
+.B Super\-n
+Launch Obsidian.
+.TP
+.B Super\-s
+Launch Spotify.
+.TP
+.B Super\-c
+Launch VS Code.
+.TP
+.B Super\-v
+Launch clipboard menu.
+.TP
+.B Super\-Shift\-v
+Launch Vesktop (Discord).
 .SS Mouse commands
 .TP
 .B Super\-Left click
 Move focused window while dragging. Tiled windows will be toggled to the floating state.
 .TP
 .B Super\-Middle click
-Toggles focused window between floating and tiled state.
+Reset gaps to default.
 .TP
 .B Super\-Right click
 Resize focused window while dragging. Tiled windows will be toggled to the floating state.
@@ -196,19 +222,3 @@ Cleanly terminate the dwm process.
 .SH SEE ALSO
 .BR dmenu (1),
 .BR st (1)
-.SH ISSUES
-Java applications which use the XToolkit/XAWT backend may draw grey windows
-only. The XToolkit/XAWT backend breaks ICCCM-compliance in recent JDK 1.5 and early
-JDK 1.6 versions, because it assumes a reparenting window manager. Possible workarounds
-are using JDK 1.4 (which doesn't contain the XToolkit/XAWT backend) or setting the
-environment variable
-.BR AWT_TOOLKIT=MToolkit
-(to use the older Motif backend instead) or running
-.B xprop -root -f _NET_WM_NAME 32a -set _NET_WM_NAME LG3D
-or
-.B wmname LG3D
-(to pretend that a non-reparenting window manager is running that the
-XToolkit/XAWT backend can recognize) or when using OpenJDK setting the environment variable
-.BR _JAVA_AWT_WM_NONREPARENTING=1 .
-.SH BUGS
-Send all bug reports with a patch to hackers@suckless.org.
