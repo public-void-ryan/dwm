@@ -14,7 +14,7 @@ static int smartgaps = 1;		  /* 1 means no outer gap when there is only one wind
 static int showbar = 1;			  /* 0 means no bar */
 static int topbar = 1;			  /* 0 means bottom bar */
 static const int vertpad = 0;	  /* vertical padding of bar */
-static const int sidepad = 500;	  /* horizontal padding of bar */
+static const int sidepad = 0;	  /* horizontal padding of bar */
 static char *fonts[] = {"HackNerdFont:size=12:antialias=true"};
 static char normbgcolor[] = "#222222";
 static char normbordercolor[] = "#ffffff";
@@ -56,28 +56,28 @@ static const char *tags[] = {"", "󰖟", "󰎞", "󰇰", "󰗃", "󰝚", "�
 #define TAG8 (1 << 7)
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor    float x,y,w,h         floatborderpx
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1,        50,50,500,500,        5 }, */
-	{TERMCLASS, NULL, NULL, 0, 0, 1, 0, -1},
-	{"librewolf", NULL, NULL, TAG2, 0, 0, 0, -1},
-	{"vesktop", NULL, NULL, TAG1, 0, 0, 0, 1}, /*right monitor*/
-	{"Spotify", "spotify", NULL, TAG6, 0, 0, 0, -1},
-	{"pocket-casts-linux", NULL, NULL, TAG7, 0, 0, 0, -1},
-	{"thunderbird", NULL, NULL, TAG4, 0, 0, 0, -1},
-	{"FreeTube", "freetube", NULL, TAG5, 0, 0, 0, -1},
-	{"obsidian", "obsidian", NULL, TAG3, 0, 0, 0, -1},
-	{NULL, "bg", NULL, TAG8, 0, 1, 0, -1},
-	{NULL, "spterm", NULL, SPTAG(0), 1, 1, 0, -1},
-	{NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1},
-	{NULL, NULL, "Event Tester", 0, 0, 0, 1, -1},
-	{"WowUpCf", NULL, NULL, 0, 1, 0, 0, -1},
-	{"battle.net.exe", NULL, NULL, 0, 1, 0, 0, -1},
-	{"Qalculate-gtk", NULL, NULL, 0, 1, 0, 0, -1},
-	{"steam_app_", NULL, NULL, 0, 1, 0, 0, -1},
-	{"steam", NULL, NULL, 0, 1, 0, 0, -1},
-	{"ut2004-bin-linux-amd64", NULL, NULL, 0, 1, 0, 0, -1},
-	{ NULL, NULL, "Picture in picture", 0, 1, -1 }, // freetube
-	{ "librewolf", "Toolkit", "Picture-in-Picture", 0, 1, -1 },
+	/* class      instance    title       tags mask     isfloating   isterminal noswallow monitor    float x,y,w,h         floatborderpx 
+	{ "Gimp",     NULL,       NULL,       0,            1,           0,         0,       -1,        50,50,500,500,        5 }, */
+	{ TERMCLASS,  NULL,       NULL,       0,            0,           1,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ "librewolf", NULL,      NULL,       TAG2,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ "vesktop",  NULL,       NULL,       TAG1,         0,           0,         0,        1,        80, 50, 1280, 720,    0 },
+	{ "Spotify",  "spotify",  NULL,       TAG6,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ "pocket-casts-linux", NULL, NULL,   TAG7,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ "thunderbird", NULL,    NULL,       TAG4,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ "FreeTube", "freetube", NULL,       TAG5,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ "obsidian", "obsidian", NULL,       TAG3,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
+	{ NULL,       "bg",       NULL,       TAG8,         0,           0,         0,       -1,        -1, -1, -1, -1,       0 },
+	{ NULL,       "spterm",   NULL,       SPTAG(0),     1,           1,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ NULL,       "spcalc",   NULL,       SPTAG(1),     1,           1,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ NULL,       NULL,       "Event Tester", 0,        0,           0,         1,       -1,        50, 50, 1280, 720,    0 },
+	{ "WowUpCf",  NULL,       NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ "battle.net.exe", NULL, NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ "Qalculate-gtk", NULL,  NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ "steam_app_", NULL,     NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ "steam",    NULL,       NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ "ut2004-bin-linux-amd64", NULL, NULL, 0,          1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ NULL,       NULL,       "Picture in picture", 0,  1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ "librewolf", "Toolkit", "Picture-in-Picture", 0,  1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
 };
 
 /* layout(s) */
