@@ -99,7 +99,6 @@ static const Layout layouts[] = {
 	{"[\\]", dwindle}, /* Decreasing in size right and leftward */
 
 	{"[D]", deck},	  /* Master on left, slaves in monocle-like mode on right */
-	{"[M]", monocle}, /* All windows on top of eachother */
 
 	{"|M|", centeredmaster},		 /* Master in middle, slaves on sides */
 	{">M>", centeredfloatingmaster}, /* Same but master floats */

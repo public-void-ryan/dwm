@@ -295,7 +295,6 @@ static void loadxrdb(void);
 static void manage(Window w, XWindowAttributes *wa);
 static void mappingnotify(XEvent *e);
 static void maprequest(XEvent *e);
-static void monocle(Monitor *m);
 static void motionnotify(XEvent *e);
 static void movemouse(const Arg *arg);
 static Client *nexttagged(Client *c);
@@ -1511,20 +1510,6 @@ void maprequest(XEvent *e)
 		manage(ev->window, &wa);
 }
 
-void monocle(Monitor *m)
-{
-	unsigned int n;
-	int oh, ov, ih, iv;
-	Client *c;
-
-	getgaps(m, &oh, &ov, &ih, &iv, &n);
-
-	if (n > 0) /* override layout symbol */
-		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
-	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
-		resize(c, m->wx + ov, m->wy + oh, m->ww - 2 * c->bw - 2 * ov, m->wh - 2 * c->bw - 2 * oh, 0);
-}
-
 void motionnotify(XEvent *e)
 {
 	static Monitor *mon = NULL;
@@ -2616,13 +2601,14 @@ void updatesizehints(Client *c)
 	c->isfixed = (c->maxw && c->maxh && c->maxw == c->minw && c->maxh == c->minh);
 }
 
-void updatestatus(void) {
-    strcpy(stext, "dwm-Ryan");
-    if (!gettextprop(root, XA_WM_NAME, rawstext, sizeof(rawstext)))
-        strcpy(stext, "dwm-Ryan");
-    else
-        copyvalidchars(stext, rawstext);
-    drawbar(selmon);
+void updatestatus(void)
+{
+	strcpy(stext, "dwm-Ryan");
+	if (!gettextprop(root, XA_WM_NAME, rawstext, sizeof(rawstext)))
+		strcpy(stext, "dwm-Ryan");
+	else
+		copyvalidchars(stext, rawstext);
+	drawbar(selmon);
 }
 
 void updatetitle(Client *c)
