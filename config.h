@@ -185,7 +185,7 @@ static Key keys[] = {
 	{MODKEY | ShiftMask,           XK_equal,    spawn,          SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 15%+; kill -44 $(pidof dwmblocks)")},
 	{MODKEY,                       XK_BackSpace,spawn,          SHCMD("powermenu")},
 	{MODKEY | ShiftMask,           XK_BackSpace,spawn,          SHCMD("powermenu")},
-	{MODKEY,                       XK_Escape,		spawn,          SHCMD("powermenu")},
+	{MODKEY,                       XK_Escape,		spawn,      SHCMD("powermenu")},
 	{MODKEY,                       XK_Tab,      view,           {0}},
 	{MODKEY,                       XK_q,        killclient,     {0}},
 	{MODKEY | ShiftMask,           XK_q,        spawn,          SHCMD("powermenu")},
@@ -200,6 +200,7 @@ static Key keys[] = {
 	{MODKEY,                       XK_t,        setlayout,      {.v = &layouts[0]}}, /* tile */
 	{MODKEY | ShiftMask,           XK_t,        setlayout,      {.v = &layouts[1]}}, /* bstack */
 	{MODKEY,                       XK_y,        spawn,          SHCMD("freetube")},
+	{MODKEY | ShiftMask,           XK_y,        spawn,          SHCMD("st /home/ryan/.local/bin/statusbar/sb-popupgrade")},
 	{MODKEY,                       XK_p,        spawn,          SHCMD("pocket-casts-linux")},
 	{MODKEY | ShiftMask,           XK_p,        spawn,          SHCMD("colorpicker")},
 	{MODKEY | ShiftMask,           XK_p,        spawn,          SHCMD("mpc pause ; pauseallmpv")},
@@ -234,7 +235,7 @@ static Key keys[] = {
 	{MODKEY,                       XK_x,        incrgaps,       {.i = -3}},
 	{MODKEY,                       XK_c,        spawn,          SHCMD("code")},
 	{MODKEY,                       XK_b,        togglebar,      {0}},
-	{MODKEY, XK_grave, spawn, SHCMD("toggle-trayer")},
+	{MODKEY, 					   XK_grave, 	spawn, 			SHCMD("toggle-trayer")},
 	{MODKEY,                       XK_n,        spawn,          SHCMD("obsidian")},
 	{MODKEY | ShiftMask,           XK_n,        spawn,          SHCMD(TERMINAL " -c newsboat -e newsboat")},
 	{MODKEY,                       XK_m,        spawn,          SHCMD("mpv --force-window --idle")},
