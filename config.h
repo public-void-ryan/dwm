@@ -95,15 +95,11 @@ static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{"", tile},	 /* Default: Master on left, slaves on right */
 	{"", bstack}, /* Master on top, slaMaster in middle, slaves on sides */
-
 	{"[@]", spiral},   /* Fibonacci spiral */
 	{"[\\]", dwindle}, /* Decreasing in size right and leftward */
-
 	{"[D]", deck},	  /* Master on left, slaves in monocle-like mode on right */
-
 	{"|M|", centeredmaster},		 /* Master in middle, slaves on sides */
 	{">M>", centeredfloatingmaster}, /* Same but master floats */
-
 	{"><>", NULL}, /* no layout function means floating behavior */
 	{NULL, NULL},
 };
@@ -216,7 +212,7 @@ static Key keys[] = {
 	{MODKEY,                       XK_d,        spawn,          {.v = launcherduncmd}},
 	{MODKEY | ShiftMask,           XK_d,        spawn,          {.v = launcherruncmd}},
 	{MODKEY,                       XK_f,        togglefullscr,  {0}},
-	{MODKEY | ShiftMask,           XK_f,        setlayout,      {.v = &layouts[8]}},
+	{MODKEY | ShiftMask,           XK_f,        setlayout,      {.v = &layouts[7]}}, /* float */
 	{MODKEY,                       XK_g,        shiftview,      {.i = -1}},
 	{MODKEY | ShiftMask,           XK_g,        shifttag,       {.i = -1}},
 	{MODKEY,                       XK_h,        setmfact,       {.f = -0.05}},
