@@ -1,6 +1,6 @@
 /* Constants */
-#define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMINAL "alacritty"
+#define TERMCLASS "Alacritty"
 
 /* appearance */
 static unsigned int borderpx = 0; /* border pixel of windows */
