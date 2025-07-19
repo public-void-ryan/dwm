@@ -34,6 +34,12 @@ typedef struct
 	const char *name;
 	const void *cmd;
 } Sp;
+
+typedef struct {
+	const char **cmd;
+	unsigned int tag;
+} SpawnViewArg;
+
 const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x24", NULL};
 const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "HackNerdFont:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL};
 static Sp scratchpads[] = {
@@ -125,16 +131,41 @@ static const Layout layouts[] = {
 		.v = (const char *[]) { "/bin/sh", "-c", cmd, NULL } \
 	}
 
+static void spawn_and_view(const Arg *arg) {
+	const SpawnViewArg *sva = arg->v;
+	spawn(&(const Arg){.v = sva->cmd});
+	view(&(const Arg){.ui = sva->tag});
+}
+
+
+
+static void spawn_and_view(const Arg *arg);
+
 /* commands */
 static const char *termcmd[] = {TERMINAL, NULL};
 static const char *ocr_cmd[] = {"/home/ryan/.local/bin/ocr", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
 static const char *launcherduncmd[] = {"/home/ryan/.local/bin/launcher", NULL};
 static const char *launcherruncmd[] = {"/home/ryan/.local/bin/launchercmd", NULL};
+static const char *freetube_cmd[] = { "freetube", NULL };
+static const SpawnViewArg freetube_combined = { freetube_cmd, TAG5 };
+static const char *spotify_cmd[] = { "spotify_wrapper", NULL };
+static const SpawnViewArg spotify_combined = { spotify_cmd, TAG6 };
+// launch browser with a tag
+static const char *browser_cmd[] = { "sh", "-c", "$BROWSER", NULL };
+static const SpawnViewArg browser_combined = { browser_cmd, TAG2 };
+// launch thunderbird with a tag
+static const char *thunderbird_cmd[] = { "thunderbird", NULL };
+static const SpawnViewArg thunderbird_combined = { thunderbird_cmd, TAG4 };
+// launch obsidian with a tag
+static const char *obsidian_cmd[] = { "obsidian", NULL };
+static const SpawnViewArg obsidian_combined = { obsidian_cmd, TAG3 };
+
 
 /*
  * Xresources preferences to load at startup
  */
+
 ResourcePref resources[] = {
 	{"color0", STRING, &normbordercolor},
 	{"color8", STRING, &selbordercolor},
@@ -185,9 +216,9 @@ static Key keys[] = {
 	{MODKEY,                       XK_Tab,      view,           {0}},
 	{MODKEY,                       XK_q,        killclient,     {0}},
 	{MODKEY | ShiftMask,           XK_q,        spawn,          SHCMD("powermenu")},
-	{MODKEY,                       XK_w,        spawn,          SHCMD("$BROWSER")},
+	{MODKEY,                       XK_w,        spawn_and_view, {.v = &browser_combined} },
 	{MODKEY | ShiftMask,           XK_w,        spawn,          SHCMD("define_word")},
-	{MODKEY,                       XK_e,        spawn,          SHCMD("thunderbird")},
+	{MODKEY,                       XK_e,        spawn_and_view, {.v = &thunderbird_combined} },
 	{MODKEY,                       XK_v,        spawn,          SHCMD("clipmenu")},
 	{MODKEY | ShiftMask, 		   XK_v, 		spawn, 			SHCMD("setsid vesktop >/dev/null 2>&1")},
 	{MODKEY | ShiftMask,           XK_r,        spawn,          SHCMD("setsid thunar")},
@@ -195,8 +226,8 @@ static Key keys[] = {
 	{MODKEY,                       XK_r,        spawn,          SHCMD(TERMINAL " -e lfub")},
 	{MODKEY,                       XK_t,        setlayout,      {.v = &layouts[0]}}, /* tile */
 	{MODKEY | ShiftMask,           XK_t,        setlayout,      {.v = &layouts[1]}}, /* bstack */
-	{MODKEY,                       XK_y,        spawn,          SHCMD("freetube")},
-	{MODKEY | ShiftMask,           XK_y,        spawn,          SHCMD("st /home/ryan/.local/bin/statusbar/sb-popupgrade")},
+	{MODKEY,                       XK_y,        spawn_and_view, {.v = &freetube_combined} },
+	{MODKEY | ShiftMask,           XK_y,        spawn,          SHCMD("alacritty -e /home/ryan/.local/bin/statusbar/sb-popupgrade")},
 	{MODKEY,                       XK_p,        spawn,          SHCMD("pocket-casts-linux")},
 	{MODKEY | ShiftMask,           XK_p,        spawn,          SHCMD("colorpicker")},
 	{MODKEY | ShiftMask,           XK_p,        spawn,          SHCMD("mpc pause ; pauseallmpv")},
@@ -207,13 +238,13 @@ static Key keys[] = {
 	{MODKEY,                       XK_backslash, view,          {0}},
 	{MODKEY,                       XK_a,        togglegaps,     {0}},
 	{MODKEY | ShiftMask,           XK_a,        defaultgaps,    {0}},
-	{MODKEY,                       XK_s,        spawn,          SHCMD("spotify_wrapper")},
+	{MODKEY, 					   XK_s, 		spawn_and_view, {.v = &spotify_combined} },
 	{MODKEY | ShiftMask,           XK_s,        togglesticky,   {0}},
 	{MODKEY,                       XK_d,        spawn,          {.v = launcherduncmd}},
 	{MODKEY | ShiftMask,           XK_d,        spawn,          {.v = launcherruncmd}},
 	{MODKEY,                       XK_f,        togglefullscr,  {0}},
 	{MODKEY | ShiftMask,           XK_f,        setlayout,      {.v = &layouts[7]}}, /* float */
-	{MODKEY,                       XK_g,        shiftview,      {.i = -1}},
+	{MODKEY,                       XK_g,        spawn,     		SHCMD("qutebrowser --basedir /home/ryan/.local/share/qutebrowser-chatgpt --target=window --set tabs.show never --set statusbar.show never https://chat.openai.com")},
 	{MODKEY | ShiftMask,           XK_g,        shifttag,       {.i = -1}},
 	{MODKEY,                       XK_h,        setmfact,       {.f = -0.05}},
 	{MODKEY | ShiftMask,           XK_h,        spawn,          SHCMD("hyphenate")},
@@ -232,8 +263,8 @@ static Key keys[] = {
 	{MODKEY,                       XK_c,        spawn,          SHCMD("code")},
 	{MODKEY,                       XK_b,        togglebar,      {0}},
 	{MODKEY, 					   XK_grave, 	spawn, 			SHCMD("toggle-trayer")},
-	{MODKEY,                       XK_n,        spawn,          SHCMD("obsidian")},
-	{MODKEY | ShiftMask,           XK_n,        spawn,          SHCMD(TERMINAL " -c newsboat -e newsboat")},
+	{MODKEY,                       XK_n,        spawn_and_view, {.v = &obsidian_combined} },
+	{MODKEY | ShiftMask,           XK_n,        spawn,          SHCMD("alacritty -e newsboat")},
 	{MODKEY,                       XK_m,        spawn,          SHCMD("mpv --force-window --idle")},
 	{MODKEY | ShiftMask,           XK_m,        spawn,          {.v = (const char *[]){TERMINAL, "-e", "ncmpcpp", NULL}}},
 	{MODKEY,                       XK_comma,    spawn,          SHCMD("playerctl previous")},
