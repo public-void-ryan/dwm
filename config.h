@@ -40,8 +40,14 @@ typedef struct {
 	unsigned int tag;
 } SpawnViewArg;
 
-const char *spcmd1[] = {TERMINAL, "-n", "spterm", "-g", "120x24", NULL};
-const char *spcmd2[] = {TERMINAL, "-n", "spcalc", "-f", "HackNerdFont:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL};
+const char *spcmd1[] = {TERMINAL, "--class", "spterm", "-o", "window.dimensions.columns=120", "-o", "window.dimensions.lines=24", NULL};
+const char *spcmd2[] = {
+    "alacritty",
+    "--class", "spcalc",
+    "--config-file", "/home/ryan/.config/alacritty/spcalc.toml",
+    "-e", "bc", "-lq",
+    NULL
+};
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm", spcmd1},
@@ -74,7 +80,8 @@ static const Rule rules[] = {
 	{ "obsidian", "obsidian", NULL,       TAG3,         0,           0,         0,       -1,        80, 50, 1280, 720,    0 },
 	{ NULL,       "bg",       NULL,       TAG8,         0,           0,         0,       -1,        -1, -1, -1, -1,       0 },
 	{ NULL,       "spterm",   NULL,       SPTAG(0),     1,           1,         0,       -1,        50, 50, 1280, 720,    0 },
-	{ NULL,       "spcalc",   NULL,       SPTAG(1),     1,           1,         0,       -1,        50, 50, 1280, 720,    0 },
+	{ NULL, "spcalc", NULL, SPTAG(1), 1, 1, 0, -1, -1, -1, -1, -1, 0 },
+
 	{ NULL,       NULL,       "Event Tester", 0,        0,           0,         1,       -1,        50, 50, 1280, 720,    0 },
 	{ "WowUpCf",  NULL,       NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
 	{ "battle.net.exe", NULL, NULL,       0,            1,           0,         0,       -1,        50, 50, 1280, 720,    0 },
@@ -265,7 +272,7 @@ static Key keys[] = {
 	{MODKEY, 					   XK_grave, 	spawn, 			SHCMD("toggle-trayer")},
 	{MODKEY,                       XK_n,        spawn_and_view, {.v = &obsidian_combined} },
 	{MODKEY | ShiftMask,           XK_n,        spawn,          SHCMD("alacritty -e newsboat")},
-	{MODKEY,                       XK_m,        spawn,          SHCMD("mpv --force-window --idle")},
+	{MODKEY,                       XK_m,        spawn,          SHCMD("alacritty -e mpv --force-window --idle")},
 	{MODKEY | ShiftMask,           XK_m,        spawn,          {.v = (const char *[]){TERMINAL, "-e", "ncmpcpp", NULL}}},
 	{MODKEY,                       XK_comma,    spawn,          SHCMD("playerctl previous")},
 	{MODKEY | ShiftMask,           XK_comma,    spawn,          SHCMD("mpc seek 0%")},
